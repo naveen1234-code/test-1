@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IRON DISTRICT GYM | Strength • Conditioning • Results</title>
+  <meta name="description" content="Premium black-red gym website template: pricing, schedule, trainers, gallery, testimonials, WhatsApp booking." />
+  <meta name="theme-color" content="#0b0b0f" />
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="assets/favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Urbanist:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #07070b;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.52);
+      --border: rgba(255,255,255,.12);
+      --accent: #ff2a2a;   /* red */
+      --accent2:#ff5b5b;
+      --good: #1fe18b;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --r: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(255,42,42,.18), transparent 60%),
+        radial-gradient(900px 500px at 100% 10%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(800px 500px at 10% 110%, rgba(255,42,42,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px)); margin-inline:auto}
+    .chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border:1px solid var(--border);
+      border-radius:999px; background:rgba(255,255,255,.04);
+      color:var(--muted); font-size:13px;
+      backdrop-filter: blur(10px);
+    }
+    .dot{width:8px; height:8px; border-radius:99px; background:var(--accent); box-shadow:0 0 0 6px rgba(255,42,42,.14)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:14px; border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:700; font-size:14px;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.18)}
+    .btn.primary{
+      border-color:rgba(255,42,42,.5);
+      background: linear-gradient(135deg, rgba(255,42,42,.92), rgba(255,42,42,.55));
+      box-shadow: 0 14px 50px rgba(255,42,42,.20);
+    }
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(255,42,42,.98), rgba(255,42,42,.62))}
+    .btn.ghost{background:transparent}
+    .btn.good{
+      border-color:rgba(31,225,139,.5);
+      background: linear-gradient(135deg, rgba(31,225,139,.95), rgba(31,225,139,.55));
+      box-shadow: 0 14px 50px rgba(31,225,139,.16);
+      color:#062516;
+    }
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background: rgba(7,7,11,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-family: Urbanist, Inter, sans-serif;
+      letter-spacing:.6px;
+      font-weight:800;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.40), transparent 60%),
+        linear-gradient(135deg, rgba(255,42,42,.95), rgba(255,42,42,.35));
+      box-shadow: 0 16px 50px rgba(255,42,42,.18);
+      border:1px solid rgba(255,255,255,.14);
+      display:grid; place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 180deg, transparent, rgba(255,255,255,.22), transparent);
+      animation: spin 4.2s linear infinite;
+    }
+    .logo span{
+      position:relative; z-index:2;
+      font-size:14px; font-weight:900;
+      text-shadow:0 10px 40px rgba(0,0,0,.5);
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .menu{display:flex; gap:16px; align-items:center}
+    .menu a{
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+      padding:10px 10px;
+      border-radius:12px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .menu a:hover{background:rgba(255,255,255,.06); color:rgba(255,255,255,.9)}
+    .menu .cta{display:none}
+
+    .nav-actions{display:flex; gap:10px; align-items:center}
+    .burger{
+      display:none;
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      cursor:pointer;
+    }
+    .burger svg{width:22px; height:22px}
+    .mobile-panel{
+      display:none;
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(7,7,11,.65);
+      backdrop-filter: blur(14px);
+    }
+    .mobile-panel .container{padding:10px 0 14px}
+    .mobile-panel a{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 12px;
+      border-radius:14px;
+      color:rgba(255,255,255,.86);
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      margin-top:10px;
+      font-weight:800;
+    }
+
+    /* HERO */
+    .hero{padding:58px 0 26px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 240px at 20% 10%, rgba(255,42,42,.18), transparent 60%),
+                  radial-gradient(500px 260px at 100% 0%, rgba(255,255,255,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .card > *{position:relative; z-index:2}
+    .hero-main{padding:26px}
+    .h1{
+      font-family: Urbanist, Inter, sans-serif;
+      font-size: clamp(36px, 4.3vw, 56px);
+      line-height:1.02;
+      margin:14px 0 10px;
+      letter-spacing:.4px;
+    }
+    .lead{color:var(--muted); font-size:16px; margin:0 0 18px}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+
+    .hero-side{padding:18px}
+    .stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .stat{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.28);
+    }
+    .stat strong{display:block; font-size:22px; letter-spacing:.2px}
+    .stat span{color:var(--muted2); font-weight:700; font-size:12px}
+    .side-box{
+      margin-top:12px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.28);
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      background: rgba(255,42,42,.12);
+      border:1px solid rgba(255,42,42,.28);
+      font-weight:800; font-size:12px;
+      color: rgba(255,255,255,.92);
+    }
+
+    /* SECTIONS */
+    .section{padding:34px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin-bottom:14px;
+    }
+    .h2{
+      margin:0;
+      font-family: Urbanist, Inter, sans-serif;
+      font-size: clamp(22px, 2.3vw, 30px);
+      letter-spacing:.3px;
+    }
+    .sub{color:var(--muted); margin:6px 0 0}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    .panel{
+      padding:18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 14px 50px rgba(0,0,0,.22);
+    }
+    .panel h3{margin:0 0 6px; font-size:16px}
+    .panel p{margin:0; color:var(--muted)}
+    .icon{
+      width:42px; height:42px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.32);
+      display:grid; place-items:center;
+      margin-bottom:10px;
+    }
+    .icon svg{width:20px;height:20px}
+
+    /* PRICING */
+    .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .price{
+      position:relative;
+      padding:18px;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.22));
+      overflow:hidden;
+    }
+    .price.featured{
+      border-color: rgba(255,42,42,.35);
+      box-shadow: 0 18px 60px rgba(255,42,42,.12);
+    }
+    .price .tag{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.82);
+      font-weight:800;
+      font-size:12px;
+    }
+    .amt{
+      margin:12px 0 6px;
+      font-family: Urbanist, Inter, sans-serif;
+      font-weight:900;
+      font-size:34px;
+      letter-spacing:.3px;
+    }
+    .amt small{font-size:14px; color:var(--muted); font-weight:800}
+    .list{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .list li{display:flex; gap:10px; align-items:flex-start; color:var(--muted)}
+    .tick{width:18px;height:18px; flex:0 0 18px; margin-top:2px}
+    .price .btn{margin-top:14px; width:100%}
+
+    /* SCHEDULE */
+    .table{
+      width:100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow:hidden;
+      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+    }
+    .table th, .table td{
+      padding:14px 14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color:rgba(255,255,255,.86);
+      font-size:14px;
+    }
+    .table th{color:var(--muted); font-weight:800; font-size:12px; letter-spacing:.4px; text-transform:uppercase}
+    .table tr:last-child td{border-bottom:0}
+    .pill{
+      display:inline-flex; padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:800; font-size:12px; color:rgba(255,255,255,.86)
+    }
+    .pill.red{border-color: rgba(255,42,42,.35); background: rgba(255,42,42,.12)}
+    .pill.good{border-color: rgba(31,225,139,.35); background: rgba(31,225,139,.12)}
+
+    /* GALLERY */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+    }
+    .g{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      position:relative;
+      min-height:160px;
+    }
+    .g::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(400px 160px at 20% 10%, rgba(255,42,42,.18), transparent 60%),
+                  radial-gradient(400px 160px at 100% 0%, rgba(255,255,255,.12), transparent 60%);
+    }
+    .g span{
+      position:absolute; bottom:12px; left:12px;
+      font-weight:900; letter-spacing:.4px; font-size:12px;
+      color:rgba(255,255,255,.86);
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.30);
+      backdrop-filter: blur(10px);
+    }
+    /* (replace these blocks with real images later) */
+    .g1{grid-column: span 7}
+    .g2{grid-column: span 5}
+    .g3{grid-column: span 4}
+    .g4{grid-column: span 4}
+    .g5{grid-column: span 4}
+
+    /* TESTIMONIALS */
+    .quote{
+      font-size:14px; color:rgba(255,255,255,.85);
+      margin:0 0 10px;
+    }
+    .who{display:flex; justify-content:space-between; gap:10px; color:var(--muted2); font-weight:800; font-size:12px}
+
+    /* FAQ */
+    .faq{display:grid; gap:10px}
+    details{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      padding:14px 16px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:900;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .faq p{margin:10px 0 0; color:var(--muted)}
+
+    /* CONTACT */
+    .form{
+      display:grid; gap:10px;
+    }
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      outline:none;
+      font: inherit;
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, textarea:focus{border-color: rgba(255,42,42,.5); box-shadow: 0 0 0 6px rgba(255,42,42,.10)}
+
+    /* FOOTER */
+    .footer{padding:22px 0 30px; color:var(--muted2); border-top:1px solid rgba(255,255,255,.08)}
+    .footer-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px}
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .links a{color:rgba(255,255,255,.75); font-weight:800}
+    .links a:hover{color:#fff}
+
+    /* WhatsApp floating */
+    .wa{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      width:54px; height:54px;
+      border-radius: 18px;
+      border:1px solid rgba(31,225,139,.45);
+      background: linear-gradient(135deg, rgba(31,225,139,.95), rgba(31,225,139,.55));
+      box-shadow: 0 18px 60px rgba(31,225,139,.18);
+      display:grid; place-items:center;
+      color:#062516;
+    }
+    .wa svg{width:26px;height:26px}
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns:1fr; }
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .menu{display:none}
+      .burger{display:inline-grid; place-items:center}
+      .menu .cta{display:inline-flex}
+      .g1{grid-column: span 12}
+      .g2{grid-column: span 12}
+      .g3,.g4,.g5{grid-column: span 12}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <div class="logo" aria-hidden="true"><span>IG</span></div>
+        <div>
+          <div style="font-size:14px; line-height:1; opacity:.92;">IRON DISTRICT</div>
+          <div style="font-size:12px; color:var(--muted2); font-weight:800; margin-top:3px;">GYM • STRENGTH • CONDITIONING</div>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Primary">
+        <a href="#plans">Plans</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn ghost" href="#plans">View Plans</a>
+        <a class="btn primary" href="#contact">Join Now</a>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-panel" id="mobilePanel">
+      <div class="container">
+        <a href="#plans" class="mLink">Plans <span>→</span></a>
+        <a href="#schedule" class="mLink">Schedule <span>→</span></a>
+        <a href="#trainers" class="mLink">Trainers <span>→</span></a>
+        <a href="#gallery" class="mLink">Gallery <span>→</span></a>
+        <a href="#faq" class="mLink">FAQ <span>→</span></a>
+        <a href="#contact" class="mLink">Contact <span>→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="card hero-main">
+          <div class="chip"><span class="dot"></span><span>Black • White • Red • Premium</span></div>
+          <h1 class="h1">Train Hard.<br/>Look Sharp.<br/>Get Results.</h1>
+          <p class="lead">
+            A premium gym experience built for people who don’t make excuses.
+            Strength training, conditioning, functional fitness — and a community that pushes you forward.
+          </p>
+          <div class="btnrow">
+            <a class="btn primary" href="#plans">See Plans</a>
+            <a class="btn good" target="_blank" rel="noopener"
+               href="https://wa.me/94700000000?text=Hi%20I%20want%20to%20join%20IRON%20DISTRICT%20Gym.">
+              WhatsApp Join
+            </a>
+            <a class="btn" href="#schedule">Class Schedule</a>
+          </div>
+          <p style="margin:14px 0 0; color:var(--muted2); font-weight:700; font-size:13px">
+            📍 Kiribathgoda • Open 5:00 AM – 10:00 PM • Free trial for new members*
+          </p>
+        </div>
+
+        <aside class="card hero-side">
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>200+</strong>
+              <span>Active Members</span>
+            </div>
+            <div class="stat">
+              <strong>4.9★</strong>
+              <span>Google Rating</span>
+            </div>
+            <div class="stat">
+              <strong>12+</strong>
+              <span>Programs</span>
+            </div>
+            <div class="stat">
+              <strong>24/7</strong>
+              <span>Support on WhatsApp</span>
+            </div>
+          </div>
+
+          <div class="side-box">
+            <div class="badge">🔥 LIMITED OFFER</div>
+            <h3 style="margin:10px 0 6px; font-size:16px;">New Member Starter Pack</h3>
+            <p style="margin:0; color:var(--muted); font-size:14px;">
+              Free body assessment + workout plan + nutrition basics.
+            </p>
+            <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+              <a class="btn primary" href="#contact" style="flex:1 1 160px;">Claim Offer</a>
+              <a class="btn" href="#trainers" style="flex:1 1 160px;">Meet Trainers</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Why members choose us</h2>
+          <p class="sub">Premium design. Clean structure. Easy to sell memberships.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="panel">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 20V10M10 20V4M16 20v-8M22 20V6"/>
+            </svg>
+          </div>
+          <h3>Results-driven programs</h3>
+          <p>Strength, conditioning, hypertrophy, fat-loss, and functional training.</p>
+        </div>
+
+        <div class="panel">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3l7 4v6c0 5-3 8-7 8s-7-3-7-8V7l7-4z"/>
+            </svg>
+          </div>
+          <h3>Safe coaching</h3>
+          <p>Form correction, progressive overload, injury prevention, and recovery advice.</p>
+        </div>
+
+        <div class="panel">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v2z"/>
+              <path d="M7 9V7a5 5 0 0 1 10 0v2"/>
+            </svg>
+          </div>
+          <h3>Premium facility</h3>
+          <p>Clean floor, strong equipment, and a disciplined training environment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="plans" class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Membership plans</h2>
+          <p class="sub">Clear pricing = easier decision. Replace prices with your gym’s rates.</p>
+        </div>
+        <a class="btn ghost" href="#contact">Need custom plan?</a>
+      </div>
+
+      <div class="pricing">
+        <div class="price">
+          <div class="tag">Starter</div>
+          <div class="amt">LKR 6,500 <small>/ month</small></div>
+          <p style="margin:0; color:var(--muted)">Perfect for beginners & consistency.</p>
+          <ul class="list">
+            <li>
+              <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg> Gym access (6AM–10PM)
+            </li>
+            <li>
+              <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg> Starter workout plan
+            </li>
+            <li>
+              <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg> WhatsApp support
+            </li>
+          </ul>
+          <a class="btn" href="#contact">Get Starter</a>
+        </div>
+
+        <div class="price featured">
+          <div class="tag" style="border-color:rgba(255,42,42,.35); background:rgba(255,42,42,.12)">Most Popular</div>
+          <div class="amt">LKR 9,900 <small>/ month</small></div>
+          <p style="margin:0; color:var(--muted)">Best value for visible results.</p>
+          <ul class="list">
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Full gym access</li>
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 2 coached sessions / week</li>
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Monthly progress check</li>
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Nutrition basics guide</li>
+          </ul>
+          <a class="btn primary" href="#contact">Get Pro</a>
+        </div>
+
+        <div class="price">
+          <div class="tag">Elite</div>
+          <div class="amt">LKR 18,500 <small>/ month</small></div>
+          <p style="margin:0; color:var(--muted)">High support. Maximum transformation.</p>
+          <ul class="list">
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Personal training (8 sessions)</li>
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Custom plan (workout + diet)</li>
+            <li><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
+          </ul>
+          <a class="btn" href="#contact">Get Elite</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="schedule" class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Weekly schedule</h2>
+          <p class="sub">Clean table layout. Replace with your real class timings.</p>
+        </div>
+      </div>
+
+      <div class="panel" style="padding:0; overflow:hidden">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Morning</th>
+              <th>Evening</th>
+              <th>Coach</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="pill red">Mon</span></td>
+              <td>Strength (6:00–7:00)</td>
+              <td>Hypertrophy (6:30–7:30)</td>
+              <td><span class="pill">Coach Alex</span></td>
+            </tr>
+            <tr>
+              <td><span class="pill">Tue</span></td>
+              <td>Conditioning (6:00–7:00)</td>
+              <td>Functional (6:30–7:30)</td>
+              <td><span class="pill">Coach Mia</span></td>
+            </tr>
+            <tr>
+              <td><span class="pill red">Wed</span></td>
+              <td>Strength (6:00–7:00)</td>
+              <td>Core & Mobility (6:30–7:15)</td>
+              <td><span class="pill">Coach Alex</span></td>
+            </tr>
+            <tr>
+              <td><span class="pill">Thu</span></td>
+              <td>HIIT (6:00–6:45)</td>
+              <td>Hypertrophy (6:30–7:30)</td>
+              <td><span class="pill">Coach Mia</span></td>
+            </tr>
+            <tr>
+              <td><span class="pill red">Fri</span></td>
+              <td>Strength (6:00–7:00)</td>
+              <td>Team Conditioning (6:30–7:30)</td>
+              <td><span class="pill">Coach Sam</span></td>
+            </tr>
+            <tr>
+              <td><span class="pill good">Sat</span></td>
+              <td>Open Gym (6:00–10:00)</td>
+              <td>Open Gym (4:00–9:00)</td>
+              <td><span class="pill">All coaches</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TRAINERS -->
+    <section id="trainers" class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Meet the trainers</h2>
+          <p class="sub">Replace names + photos later. Layout is ready.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="panel">
+          <div class="chip"><span class="dot"></span><span>Strength & Form</span></div>
+          <h3 style="margin-top:10px">Coach Alex</h3>
+          <p>Powerlifting focus, form correction, structured progress.</p>
+        </div>
+        <div class="panel">
+          <div class="chip"><span class="dot"></span><span>Conditioning</span></div>
+          <h3 style="margin-top:10px">Coach Mia</h3>
+          <p>Fat-loss programs, endurance, mobility & consistency.</p>
+        </div>
+        <div class="panel">
+          <div class="chip"><span class="dot"></span><span>Functional</span></div>
+          <h3 style="margin-top:10px">Coach Sam</h3>
+          <p>Athletic training, circuits, and high energy group classes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Gallery</h2>
+          <p class="sub">These blocks are placeholders — swap with real images later.</p>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <div class="g g1"><span>Facility</span></div>
+        <div class="g g2"><span>Free Weights</span></div>
+        <div class="g g3"><span>Cardio</span></div>
+        <div class="g g4"><span>Group Class</span></div>
+        <div class="g g5"><span>Transformations</span></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Member stories</h2>
+          <p class="sub">Social proof sells memberships.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="panel">
+          <p class="quote">“Lost 6kg in 6 weeks. Coaching is serious, and the gym vibe keeps you focused.”</p>
+          <div class="who"><span>Kasun</span><span>Fat-loss</span></div>
+        </div>
+        <div class="panel">
+          <p class="quote">“My strength numbers jumped fast. Proper programming and form correction.”</p>
+          <div class="who"><span>Tharindu</span><span>Strength</span></div>
+        </div>
+        <div class="panel">
+          <p class="quote">“Clean facility, good equipment, and friendly staff. Worth it.”</p>
+          <div class="who"><span>Dinithi</span><span>General Fitness</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">FAQ</h2>
+          <p class="sub">Remove objections before they message you.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>Do you offer a free trial? <span style="color:var(--muted2)">+</span></summary>
+          <p>Yes. New members can request a free trial session + quick assessment (limited slots).</p>
+        </details>
+        <details>
+          <summary>Can beginners join? <span style="color:var(--muted2)">+</span></summary>
+          <p>Absolutely. We’ll guide you with form basics, a starter plan, and coaching support.</p>
+        </details>
+        <details>
+          <summary>Do you have personal training? <span style="color:var(--muted2)">+</span></summary>
+          <p>Yes. We offer PT packages (8/12 sessions). Message us on WhatsApp for details.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="h2">Join today</h2>
+          <p class="sub">Form submits to WhatsApp (no backend needed).</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3 style="margin:0 0 10px">Visit</h3>
+          <p style="margin:0 0 10px; color:var(--muted)">
+            📍 Your Gym Address, City<br/>
+            🕒 Mon–Sat: 5:00 AM – 10:00 PM<br/>
+            📞 +94 70 000 0000
+          </p>
+          <div class="btnrow">
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="https://maps.google.com/?q=Kiribathgoda">
+              Open in Maps
+            </a>
+            <a class="btn good" target="_blank" rel="noopener"
+               href="https://wa.me/94700000000?text=Hi%20I%20want%20to%20join%20IRON%20DISTRICT%20Gym.">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 style="margin:0 0 10px">Quick form</h3>
+          <form class="form" id="leadForm">
+            <input name="name" placeholder="Your name" required />
+            <input name="phone" placeholder="Phone number" required />
+            <select name="goal" required style="padding:12px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.28);color:var(--text);font:inherit">
+              <option value="" disabled selected>Select your goal</option>
+              <option>Fat-loss</option>
+              <option>Muscle gain</option>
+              <option>Strength</option>
+              <option>General fitness</option>
+            </select>
+            <textarea name="message" placeholder="Any questions? (optional)"></textarea>
+            <button class="btn primary" type="submit">Send on WhatsApp</button>
+            <div style="color:var(--muted2); font-weight:700; font-size:12px;">
+              By submitting, you agree to be contacted via WhatsApp.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="y"></span> IRON DISTRICT GYM</div>
+        <div class="links">
+          <a href="#plans">Plans</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- WhatsApp floating button -->
+  <a class="wa" target="_blank" rel="noopener"
+     href="https://wa.me/94700000000?text=Hi%20I%20want%20to%20join%20IRON%20DISTRICT%20Gym."
+     aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M19.11 17.43c-.27-.14-1.58-.78-1.82-.87-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.16.18-.31.2-.58.07-.27-.14-1.12-.41-2.14-1.31-.79-.7-1.32-1.56-1.48-1.83-.16-.27-.02-.42.12-.56.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.14-.6-1.45-.82-1.98-.22-.53-.44-.46-.6-.47h-.51c-.18 0-.47.07-.71.34-.24.27-.94.92-.94 2.25 0 1.33.96 2.61 1.09 2.79.13.18 1.89 2.88 4.58 4.04.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.58-.65 1.8-1.27.22-.62.22-1.15.16-1.27-.07-.12-.24-.2-.51-.34z"/>
+      <path d="M26.67 5.33A13.2 13.2 0 0 0 16.01 1.2C8.82 1.2 3 7.02 3 14.21c0 2.3.6 4.55 1.74 6.53L3 30.8l10.34-1.7a13 13 0 0 0 6.67 1.81h.01c7.19 0 13.01-5.82 13.01-13.01 0-3.47-1.35-6.73-3.36-9.57zM16.02 28.4h-.01a10.8 10.8 0 0 1-5.51-1.51l-.4-.23-6.13 1 1.03-5.98-.26-.41a10.8 10.8 0 0 1-1.65-5.77C3.09 8.4 8.4 3.1 15.99 3.1c2.88 0 5.59 1.12 7.62 3.15a10.74 10.74 0 0 1 3.15 7.62c0 7.59-5.31 13.53-10.74 14.53z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Year
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const burger = document.getElementById("burger");
+    const panel = document.getElementById("mobilePanel");
+    const links = document.querySelectorAll(".mLink");
+    burger?.addEventListener("click", () => {
+      const open = panel.style.display === "block";
+      panel.style.display = open ? "none" : "block";
+      burger.setAttribute("aria-expanded", String(!open));
+    });
+    links.forEach(a => a.addEventListener("click", () => {
+      panel.style.display = "none";
+      burger.setAttribute("aria-expanded", "false");
+    }));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        if(!id || id === "#") return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", id);
+      });
+    });
+
+    // WhatsApp form submit (no backend)
+    const form = document.getElementById("leadForm");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const name = (fd.get("name") || "").toString().trim();
+      const phone = (fd.get("phone") || "").toString().trim();
+      const goal = (fd.get("goal") || "").toString().trim();
+      const msg  = (fd.get("message") || "").toString().trim();
+
+      const text =
+        `Hi, I want to join IRON DISTRICT Gym.%0A` +
+        `Name: ${encodeURIComponent(name)}%0A` +
+        `Phone: ${encodeURIComponent(phone)}%0A` +
+        `Goal: ${encodeURIComponent(goal)}%0A` +
+        (msg ? `Message: ${encodeURIComponent(msg)}` : "");
+
+      // Change number here:
+      const wa = `https://wa.me/94700000000?text=${text}`;
+      window.open(wa, "_blank", "noopener");
+      form.reset();
+    });
+  </script>
+</body>
+</html>
